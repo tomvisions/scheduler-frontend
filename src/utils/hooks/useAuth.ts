@@ -34,10 +34,13 @@ function useAuth() {
     > => {
         try {
             const resp = await apiSignIn(values)
+
             if (resp.data) {
                 const { token } = resp.data
                 dispatch(signInSuccess(token))
+
                 if (resp.data.user) {
+
                     dispatch(
                         setUser(
                             resp.data.user || {

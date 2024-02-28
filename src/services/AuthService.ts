@@ -8,9 +8,10 @@ import type {
     SignUpResponse,
 } from '@/@types/auth'
 
+export const URL = 'http://127.0.0.1:9000/api/v1/user'
 export async function apiSignIn(data: SignInCredential) {
     return ApiService.fetchData<SignInResponse>({
-        url: '/sign-in',
+        url: `${URL}/sign-in`,
         method: 'post',
         data,
     })

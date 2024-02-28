@@ -47,7 +47,6 @@ const SignInForm = (props: SignInFormProps) => {
     ) => {
         const { userName, password } = values
         setSubmitting(true)
-
         const result = await signIn({ userName, password })
 
         if (result?.status === 'failed') {

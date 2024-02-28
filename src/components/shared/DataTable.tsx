@@ -247,7 +247,8 @@ function _DataTable<T>(
         resetSorting,
         resetSelected,
     }))
-
+//    console.log('the data')
+  //  console.log(data);
     return (
         <Loading loading={loading && data.length !== 0} type="cover">
             <Table>
@@ -289,6 +290,7 @@ function _DataTable<T>(
                     ))}
                 </THead>
                 {loading && data.length === 0 ? (
+                   
                     <TableRowSkeleton
                         // eslint-disable-next-line  @typescript-eslint/no-explicit-any
                         columns={(finalColumns as Array<T>).length}

@@ -7,6 +7,8 @@ export interface CommonProps {
 }
 
 export type TableQueries = {
+    data?: any
+    id?: string
     total?: number
     pageIndex?: number
     pageSize?: number

@@ -11,6 +11,78 @@ export const protectedRoutes = [
         component: lazy(() => import('@/views/Home')),
         authority: [],
     },
+    {
+        key: 'userList',
+        path: '/user',
+        component: lazy(() => import('@/views/UserList')),
+        authority: [],
+    },
+    {
+        key: 'userEdit',
+        path: '/user/edit/:userId',
+        component: lazy(() => import('@/views/UserEdit')),
+        authority: [],
+    },
+    {
+        key: 'usherGroupList',
+        path: '/usher-group',
+        component: lazy(() => import('@/views/UsherGroupList')),
+        authority: [],
+    },
+    {
+        key: 'usherGroupEdit',
+        path: `/usher-group/edit/:userGroupId`,
+        component: lazy(() => import('@/views/UsherGroupEdit')),
+        authority: [],
+        meta: {
+            header: 'Edit Gallery',
+        },
+    },
+    {
+        key: 'gallerList',
+        path: '/gallery',
+        component: lazy(() => import('@/views/GalleryList')),
+        authority: [],
+    },
+    {
+        key: 'galleryEdit',
+        path: `/gallery/edit/:galleryId`,
+        component: lazy(() => import('@/views/GalleryEdit')),
+        authority: [],
+        meta: {
+            header: 'Edit Gallery',
+        },
+    },
+    {
+        key: 'imageListByGalleryId',
+        path: '/image/:galleryId',
+        component: lazy(() => import('@/views/ImageListtByGalleryId')),
+        authority: [],
+    },
+    {
+        key: 'imageList',
+        path: '/image',
+        component: lazy(() => import('@/views/ImageList')),
+        authority: [],
+    },
+    {
+        key: 'imageEdit',
+        path: '/image/edit/:imageId',
+        component: lazy(() => import('@/views/ImageEdit')),
+        authority: [],
+    },
+    {
+        key: 'tag',
+        path: '/tag',
+        component: lazy(() => import('@/views/TagList')),
+        authority: [],
+    },
+    {
+        key: 'tagNew',
+        path: '/tag/new',
+        component: lazy(() => import('@/views/TagNew')),
+        authority: [],
+    },
     /** Example purpose only, please remove */
     {
         key: 'singleMenuItem',
