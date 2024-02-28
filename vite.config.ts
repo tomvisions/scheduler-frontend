@@ -16,6 +16,7 @@ export default defineConfig({
   assetsInclude: ['**/*.md'],
   resolve: {
     alias: {
+      fs: require.resolve('rollup-plugin-node-builtins'),
       '@': path.join(__dirname, 'src'),
     },
   },
