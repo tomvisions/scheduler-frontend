@@ -25,26 +25,22 @@ type OrganizationFieldsProps = {
     errors: FormikErrors<FormFieldsName>
     usherGroupList: usherGroupLV[],
     values: {
-        usherGroup: usherGroupLV[]
+        usherGroup: Options
         [key: string]: unknown
     }
 }
 
 const OrganizationFields = (props: OrganizationFieldsProps) => {
     const { values = { UsherGroup: []}, touched, errors, usherGroupList } = props
-  //  console.log('the options');
-    //console.log(values.usherGroup);
-   //console.log('values')   
-   // console.log(values);        
+    let hello:any;
+
         const boo:any = values.UsherGroup;
-
-   //     console.log('boo')
-     //   console.log(boo);
-      
-        const hello = JSON.parse(boo)
-        console.log(hello);
-
-        //console.log(JSON.parse(values.usherGroup))
+    
+        if (typeof boo === 'string') {
+            hello = JSON.parse(boo);
+        } else {
+            hello = boo;
+        }
 
     return (
         <AdaptableCard divider isLastChild className="mb-4">
@@ -69,14 +65,8 @@ const OrganizationFields = (props: OrganizationFieldsProps) => {
                                     options={usherGroupList}
                                     value={hello}
                                     onChange={(option) => {
-                                      //  console.log('optiondddd')
-                                        console.log(option);
-                                        //console.log(option[0]);
-                                       // console.log(option[0].value);
-                                     //   console.log(field.name);
 
-                                       // console.log(option[0]['value']);
-                                      form.setFieldValue(field.name, option)
+                                        form.setFieldValue(field.name, option)
                                     }}
                                 />
                             )}
