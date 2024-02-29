@@ -24,7 +24,6 @@ type InitialData = {
     Phone?: string
     Email?: string
     Description?: string
-    tags? :string
 }
 
 export type FormModel = Omit<InitialData, 'usherGroup'> & {
@@ -131,6 +130,7 @@ const UserForm = forwardRef<FormikRef, UserForm>((props, ref) => {
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values: FormModel, { setSubmitting }) => {
+
                     const formData = cloneDeep(values)
             /*        console.log('hello')
                     console.log(values)
