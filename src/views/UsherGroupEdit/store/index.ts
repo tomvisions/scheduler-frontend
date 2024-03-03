@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import reducers, { SLICE_NAME,GalleryEditState } from './productEditSlice'
+import reducers, { SLICE_NAME,UsherGroupEditState } from './productEditSlice'
 import { useSelector } from 'react-redux'
 
 import type { TypedUseSelectorHook } from 'react-redux'

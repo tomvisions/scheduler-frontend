@@ -145,6 +145,7 @@ const UserForm = forwardRef<FormikRef, UserForm>((props, ref) => {
                     } 
              
                     formData.UsherGroup = JSON.stringify(formData.UsherGroup) */
+                    formData.UsherGroup = JSON.stringify(formData.UsherGroup)
                     onFormSubmit?.(formData, setSubmitting, type)
                 }}
             >

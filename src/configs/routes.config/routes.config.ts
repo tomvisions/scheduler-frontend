@@ -35,7 +35,27 @@ export const protectedRoutes = [
         component: lazy(() => import('@/views/UsherGroupEdit')),
         authority: [],
         meta: {
-            header: 'Edit Gallery',
+            header: 'Edit Usher Group',
+        },
+    },
+
+    {
+        key: 'usherGroupNew',
+        path: `/usher-group/new`,
+        component: lazy(() => import('@/views/UsherGroupNew')),
+        authority: [],
+        meta: {
+            header: 'Edit Usher Group',
+        },
+    },
+
+    {
+        key: 'ScheduleNew',
+        path: `/schedule`,
+        component: lazy(() => import('@/views/Schedule')),
+        authority: [],
+        meta: {
+            header: 'Edit Usher Group',
         },
     },
     {

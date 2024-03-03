@@ -80,7 +80,7 @@ type GetTagsRequest = TableQueries & { filterData?: FilterQueries }
 
 type GetSalesProductsRequest = TableQueries & { filterData?: FilterQueries }
 
-export const SLICE_NAME = 'GalleryEdit'
+export const SLICE_NAME = 'UsherGroupEdit'
 
 export const getUsherGroup = createAsyncThunk(
     SLICE_NAME + '/getUsherGroup',

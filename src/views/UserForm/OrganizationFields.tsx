@@ -41,7 +41,8 @@ const OrganizationFields = (props: OrganizationFieldsProps) => {
         } else {
             hello = boo;
         }
-
+        console.log('boo');
+        console.log(boo);
     return (
         <AdaptableCard divider isLastChild className="mb-4">
             <h5>Organizations</h5>

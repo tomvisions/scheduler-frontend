@@ -5,7 +5,7 @@ import toast from '@/components/ui/toast'
 import Notification from '@/components/ui/Notification'
 import reducer, {
     getUsherGroup,
-    getTagsList,
+
     updateGallery,
     deleteProduct,
     useAppSelector,
@@ -28,21 +28,21 @@ const UsherGroupEdit = () => {
     const dispatch = useAppDispatch()
 
     const { pageIndex, pageSize, sort, query, total } = useAppSelector(
-        (state) => state.GalleryEdit.data.tableData
+        (state) => state.UsherGroupEdit.data.tableData
     )
 
     const location = useLocation()
     const navigate = useNavigate()
 
     const galleryData = useAppSelector(
-        (state) => state.GalleryEdit.data.galleryData
+        (state) => state.UsherGroupEdit.data.galleryData
     )
 
     const tagList = useAppSelector(
-        (state) => state.GalleryEdit.data.tagList
+        (state) => state.UsherGroupEdit.data.tagList
     )
     const loading = useAppSelector(
-        (state) => state.GalleryEdit.data.loading
+        (state) => state.UsherGroupEdit.data.loading
     )
 
     const fetchData = (data: { id: string }) => {

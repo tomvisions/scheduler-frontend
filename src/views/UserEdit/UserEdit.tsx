@@ -84,7 +84,7 @@ const UserEdit = () => {
 
     const handleDelete = async (setDialogOpen: OnDeleteCallback) => {
         setDialogOpen(false)
-        const success = await deleteProduct({ id: userEdit.id })
+        const success = await deleteProduct({ id: userEdit.ID })
         if (success) {
             popNotification('deleted')
         }

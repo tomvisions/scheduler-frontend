@@ -32,11 +32,6 @@ type BasicInformationFields = {
     }
 }
 
-const tags = [
-    { label: 'trend', value: 'trend' },
-    { label: 'unisex', value: 'unisex' },
-]
-
 const weekOptions = [
     { label: 'Monday', value: 'monday'},
     { label: 'Tuesday', value: 'tuesday'},
@@ -64,15 +59,15 @@ const hourOptions = [
     { label: '12', value: 12},
     { label: '13', value: 13},
     { label: '14', value: 14},
-    { label: '15', value: 14},
-    { label: '16', value: 14},
-    { label: '17', value: 14},
-    { label: '18', value: 14},
-    { label: '19', value: 14},
-    { label: '20', value: 14},
-    { label: '21', value: 14},
-    { label: '22', value: 14},
-    { label: '23', value: 14},
+    { label: '15', value: 15},
+    { label: '16', value: 16},
+    { label: '17', value: 17},
+    { label: '18', value: 18},
+    { label: '19', value: 19},
+    { label: '20', value: 20},
+    { label: '21', value: 21},
+    { label: '22', value: 22},
+    { label: '23', value: 23},
 ]
 
 const minuteOptions = [
@@ -92,7 +87,8 @@ const BasicInformationFields = (props: BasicInformationFields) => {
     return (
         <AdaptableCard divider className="mb-4">
             <h5>Basic Information</h5>
-            <p className="mb-6">Section to config galldddey information</p>
+            <p className="mb-6">Section to config usher group information</p>
+
             <FormItem
                 label="ID"
                 invalid={(errors.ID && touched.ID) as boolean}
@@ -102,7 +98,7 @@ const BasicInformationFields = (props: BasicInformationFields) => {
                     type="text"
                     autoComplete="off"
                     name="ID"
-                    placeholder="id"
+                    placeholder="ID"
                     component={Input}
                 />
             </FormItem>

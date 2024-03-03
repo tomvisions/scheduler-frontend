@@ -56,6 +56,20 @@ export async function getUsherGroupByLabelValue<T, U extends Record<string, unkn
     })
 }
 
+export async function apiCreateUsherGroup<T, U extends Record<string, unknown>>(
+    data: U
+) {
+    console.log(`${URL}/new`);
+    console.log(data);
+    return ApiService.fetchData<T>({
+        url: `${URL}/new`,
+        method: 'post',
+        data,
+    })
+}
+
+
+
 
 export async function apiGetGalleries<T, U extends Record<string, unknown>>(
     data: TableQueries

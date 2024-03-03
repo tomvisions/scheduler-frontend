@@ -20,7 +20,6 @@ type FormikRef = FormikProps<any>
 type InitialData = {
     id?: string
     name?: string
-    tags?: string[],
     description?: string
 }
 
@@ -45,7 +44,7 @@ type UsherGroupForm = {
 const { useUniqueId } = hooks
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Product Name Required'),
+    Name: Yup.string().required('Product Name Required'),
 })
 
 const DeleteProductButton = ({ onDelete }: { onDelete: OnDelete }) => {
@@ -99,10 +98,9 @@ const UsherGroupForm = forwardRef<FormikRef, UsherGroupForm>((props, ref) => {
     const {
         type,
         initialData = {
-            id: '',
-            name: '',
-            tags: [],
-            description: '',
+            ID: '',
+            Name: '',
+            Description: '',
         },
         onFormSubmit,
         onDiscard,
@@ -121,15 +119,10 @@ const UsherGroupForm = forwardRef<FormikRef, UsherGroupForm>((props, ref) => {
                 validationSchema={validationSchema}
                 onSubmit={(values: FormModel, { setSubmitting }) => {
                     const formData = cloneDeep(values)
-                    formData.tags = formData.tags.map((tag) => {
-                        if (typeof tag !== 'string') {
-                            return tag.value
-                        }
-                        return tag
-                    })
-                    if (type === 'new') {
-                        formData.id = newId
-                    }
+                  
+      //              if (type === 'new') {
+        //                formData.id = newId
+          //          }
 
                     onFormSubmit?.(formData, setSubmitting)
                 }}

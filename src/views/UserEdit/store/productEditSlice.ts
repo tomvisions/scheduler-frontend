@@ -111,7 +111,7 @@ export const getUsers = createAsyncThunk(
             GetSalesProductResponse,
             { id: string }
         >(data)
-
+        console.log('the response')
         console.log(response.data);
 
         return response.data
