@@ -1,5 +1,6 @@
 import { TableQueries } from '@/@types/common'
 import ApiService from './ApiService'
+import {ResetThePassword} from "@/@types/auth";
 
 
 /**
@@ -26,6 +27,28 @@ export async function apiGetUsers<T, U extends Record<string, unknown>>(
     return ApiService.fetchData<T>({
         url: `${URL}/page-index/${data['pageIndex']}/page-size/${params.join('/')}`,
         method: 'get',
+        data,
+    })
+}
+
+export async function apiGetUserByToken<T, U extends Record<string, unknown>>(
+    data: TableQueries
+) {
+    //const params = await formatParams(data);
+    //console.log(`${URL}/page-index/${data['pageIndex']}/page-size/${params.join('/')}`)
+    return ApiService.fetchData<T>({
+        url: `${URL}/auth/${data['token']}`,
+        method: 'get',
+    //    data,
+    })
+}
+
+export async function apiResetPassword(data: ResetThePassword) {
+    console.log('reset')
+    console.log(data);
+    return ApiService.fetchData({
+        url: `${URL}/reset-password`,
+        method: 'post',
         data,
     })
 }

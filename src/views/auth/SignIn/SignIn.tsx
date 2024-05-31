@@ -1,4 +1,8 @@
 import SignInForm from './SignInForm'
+import {injectReducer} from "@/store";
+import reducer from "./store";
+
+injectReducer('authState', reducer)
 
 const SignIn = () => {
     return (

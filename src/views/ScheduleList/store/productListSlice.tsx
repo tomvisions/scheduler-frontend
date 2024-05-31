@@ -1,62 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
-    apiGetGalleries,
-    apiDeleteSalesProducts,
-} from '@/services/MediaService'
+    apiGetSchedules,
+} from '@/services/ScheduleService'
 import type { TableQueries } from '@/@types/common'
-
-type Product = {
-    id: string
-    name: string
-    productCode: string
-    img: string
-    category: string
-    price: number
-    stock: number
-    status: number
-}
-
-type Gallery = {
-    id: string
-    name: string
-    description: string;
-    createdAt: string
-    updatedAt: string
-}
-
-
-type Products = Product[]
-
-type GetSalesProductsResponse = {
-    data:  Gallery[]
-    total: number
-}
-
-type FilterQueries = {
-    name: string
-    category: string[]
-    status: number[]
-    productStatus: number
-}
-
-export type GalleryListState = {
-    loading: boolean
-    deleteConfirmation: boolean
-    selectedProduct: string
-    tableData: TableQueries
-    filterData: FilterQueries
-    galleryList: Gallery[]
-}
+import {Schedule, FilterQueries, GetSalesProductsResponse, scheduleListState } from "@/views/ScheduleList/components/ScheduleListType";
+import {apiUnAvailable} from "@/services/ScheduleService";
 
 type GetSalesProductsRequest = TableQueries & { filterData?: FilterQueries }
 
-export const SLICE_NAME = 'galleryList'
+export const SLICE_NAME = 'scheduleList'
 
-export const getGalleries = createAsyncThunk(
-    `${SLICE_NAME}/media`,
+
+export const unAvailable = async (data: { id: string }) => {
+    const response = await apiUnAvailable<
+        boolean,
+        { id: string | string[] }
+    >(data)
+    return response.data
+}
+
+
+export const getSchedules = createAsyncThunk(
+    `${SLICE_NAME}/schedule`,
     async (data: GetSalesProductsRequest) => {
-
-        const response = await apiGetGalleries<
+        const response = await apiGetSchedules<
             GetSalesProductsResponse,
             GetSalesProductsRequest
         >(data)
@@ -65,15 +32,20 @@ export const getGalleries = createAsyncThunk(
     }
 )
 
-export const deleteProduct = async (data: { id: string | string[] }) => {
-    const response = await apiDeleteSalesProducts<
-        boolean,
-        { id: string | string[] }
-    >(data)
-    return response.data
-}
+export const getSchedulesByToken = createAsyncThunk(
+    `${SLICE_NAME}/scheduleByToken`,
+    async (data: GetSalesProductsRequest) => {
+        const response = await apiGetSchedules<
+            GetSalesProductsResponse,
+            GetSalesProductsRequest
+        >(data)
+
+        return response.data
+    }
+)
 
 export const initialTableData: TableQueries = {
+    userId: '',
     total: 0,
     pageIndex: 1,
     pageSize: 10,
@@ -84,11 +56,11 @@ export const initialTableData: TableQueries = {
     },
 }
 
-const initialState: GalleryListState = {
+const initialState: scheduleListState = {
     loading: false,
     deleteConfirmation: false,
     selectedProduct: '',
-    galleryList: [],
+    scheduleList: [],
     tableData: initialTableData,
     filterData: {
         name: '',
@@ -103,7 +75,7 @@ const productListSlice = createSlice({
     initialState,
     reducers: {
         updateProductList: (state, action) => {
-            state.galleryList = action.payload
+            state.scheduleList = action.payload
         },
         setTableData: (state, action) => {
             state.tableData = action.payload
@@ -120,12 +92,12 @@ const productListSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getGalleries.fulfilled, (state, action) => {
-                state.galleryList = action.payload.data
+            .addCase(getSchedules.fulfilled, (state, action) => {
+                state.scheduleList = action.payload.data
                 state.tableData.total = action.payload.total
                 state.loading = false
             })
-            .addCase(getGalleries.pending, (state) => {
+            .addCase(getSchedules.pending, (state) => {
                 state.loading = true
             })
     },

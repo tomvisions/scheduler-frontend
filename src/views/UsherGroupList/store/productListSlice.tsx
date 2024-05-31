@@ -144,3 +144,5 @@ export const {
 } = productListSlice.actions
 
 export default productListSlice.reducer
+console.log('the slice')
+console.log(productListSlice);

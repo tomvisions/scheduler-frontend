@@ -4,7 +4,7 @@ import {
     apiGetImagesByGalleryId,
     apiGetImages,
     apiDeleteSalesProducts,
-} from '@/services/MediaService'
+} from '@/services/ScheduleService'
 import type { TableQueries } from '@/@types/common'
 
 type Product = {

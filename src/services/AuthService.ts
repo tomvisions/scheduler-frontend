@@ -1,14 +1,15 @@
+//import { cryptoOptions } from '@/utils/crypto'
 import ApiService from './ApiService'
-import type {
+import {
     SignInCredential,
     SignUpCredential,
     ForgotPassword,
     ResetPassword,
     SignInResponse,
-    SignUpResponse,
+    SignUpResponse, ResetThePassword,
 } from '@/@types/auth'
 
-export const URL = 'http://127.0.0.1:9000/api/v1/user'
+export const URL = 'http://127.0.0.1:3500/auth'
 export async function apiSignIn(data: SignInCredential) {
     return ApiService.fetchData<SignInResponse>({
         url: `${URL}/sign-in`,
@@ -27,7 +28,7 @@ export async function apiSignUp(data: SignUpCredential) {
 
 export async function apiSignOut() {
     return ApiService.fetchData({
-        url: '/sign-out',
+        url: `${URL}/sign-out`,
         method: 'post',
     })
 }
@@ -40,10 +41,22 @@ export async function apiForgotPassword(data: ForgotPassword) {
     })
 }
 
-export async function apiResetPassword(data: ResetPassword) {
+export async function apiResetPassword(data: ResetThePassword) {
+     console.log('reset')
+     console.log(data);
     return ApiService.fetchData({
         url: '/reset-password',
         method: 'post',
         data,
     })
+}
+
+export async function apiRetrieveToken(data: ResetPassword) {
+    console.log('reset')
+    console.log(data);
+   return ApiService.fetchData({
+       url: '/reset-password',
+       method: 'post',
+       data,
+   })
 }

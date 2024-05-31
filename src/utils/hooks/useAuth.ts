@@ -10,9 +10,14 @@ import appConfig from '@/configs/app.config'
 import { REDIRECT_URL_KEY } from '@/constants/app.constant'
 import { useNavigate } from 'react-router-dom'
 import useQuery from './useQuery'
-import type { SignInCredential, SignUpCredential } from '@/@types/auth'
+import type {SignInCredential, SignInResponse, SignUpCredential} from '@/@types/auth'
+import Cookies from 'js-cookie'
+
 
 type Status = 'success' | 'failed'
+export const getAccessToken = () => Cookies.get('access_token')
+export const getRefreshToken = () => Cookies.get('refresh_token')
+export const isAuthenticated = () => !!getAccessToken()
 
 function useAuth() {
     const dispatch = useAppDispatch()
@@ -35,22 +40,26 @@ function useAuth() {
         try {
             const resp = await apiSignIn(values)
 
+            console.log('resp')
+            console.log(resp)
             if (resp.data) {
-                const { token } = resp.data
+                const { token } = resp.data.data
                 dispatch(signInSuccess(token))
 
-                if (resp.data.user) {
-
+                if (resp.data.data) {
+                    const { user} = resp.data.data;
                     dispatch(
                         setUser(
-                            resp.data.user || {
+                            user || {
                                 avatar: '',
-                                userName: 'Anonymous',
+                                Name: 'Anonymous',
                                 authority: ['USER'],
-                                email: '',
+                                Email: '',
+                                ID: ''
                             }
                         )
                     )
+                    
                 }
                 const redirectUrl = query.get(REDIRECT_URL_KEY)
                 navigate(
@@ -74,16 +83,16 @@ function useAuth() {
         try {
             const resp = await apiSignUp(values)
             if (resp.data) {
-                const { token } = resp.data
+                const { token } = resp.data.data
                 dispatch(signInSuccess(token))
-                if (resp.data.user) {
+                if (resp.data.data) {
+                    const { user} = resp.data.data;
                     dispatch(
                         setUser(
-                            resp.data.user || {
+                            user || {
                                 avatar: '',
                                 userName: 'Anonymous',
                                 authority: ['USER'],
-                                email: '',
                             }
                         )
                     )
@@ -111,8 +120,8 @@ function useAuth() {
         dispatch(
             setUser({
                 avatar: '',
-                userName: '',
-                email: '',
+                Name: '',
+                Email: '',
                 authority: [],
             })
         )

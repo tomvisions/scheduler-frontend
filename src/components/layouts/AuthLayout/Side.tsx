@@ -27,15 +27,13 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                         />
                         <div className="text-white">
                             <div className="font-semibold text-base">
-                                Brittany Hale
+                                Tom Cruickshank
                             </div>
-                            <span className="opacity-80">CTO, Onward</span>
+                            <span className="opacity-80">Scheduler Author</span>
                         </div>
                     </div>
                     <p className="text-lg text-white opacity-80">
-                        Elstar comes with a complete set of UI components
-                        crafted with Tailwind CSS, it fulfilled most of the use
-                        case to create modern and beautiful UI and application
+                       Welcome to the Scheduler. This application streamlines scheduling to make it quick and easy to do stuff
                     </p>
                 </div>
                 <span className="text-white">

@@ -5,7 +5,7 @@ import {
     apiPutSalesProduct,
     apiPutGallery,
     apiDeleteSalesProducts,
-} from '@/services/MediaService'
+} from '@/services/ScheduleService'
 
 import type { TableQueries } from '@/@types/common'
 

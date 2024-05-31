@@ -7,6 +7,10 @@ export interface CommonProps {
 }
 
 export type TableQueries = {
+    requestId? :string
+    userId?: string,
+    type?: string,
+    token?: any
     data?: any
     id?: string
     total?: number

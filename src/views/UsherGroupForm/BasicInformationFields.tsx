@@ -19,6 +19,7 @@ type FormFieldsName = {
     Hour: number
     Minute: number
     Description: string
+    UsherAmount: Number
 }
 
 type BasicInformationFields = {
@@ -40,6 +41,19 @@ const weekOptions = [
     { label: 'Friday', value: 'friday'},
     { label: 'Saturday', value: 'saturday'},
     { label: 'Sunday', value: 'sunday'},
+
+]
+
+const ushersAmount = [
+    { label: '1', value: 1},
+    { label: '2', value: 2},
+    { label: '3', value: 3},
+    { label: '4', value: 4},
+    { label: '5', value: 5},
+    { label: '6', value: 6},
+    { label: '7', value: 7},
+    { label: '8', value: 8},
+    { label: '9', value: 9},
 
 ]
 
@@ -81,7 +95,7 @@ const minuteOptions = [
 const BasicInformationFields = (props: BasicInformationFields) => {
   //  const { touched, errors } = props
    // const { values = { tags: [] }, touched, errors } = props
-    const { values = { Day: 'sunday',  Hour: 9, Minute: 30   }, touched, errors } = props
+    const { values = { Day: 'sunday',  Hour: 9, Minute: 30, UsherAmount: 4 }, touched, errors } = props
 
 
     return (
@@ -100,6 +114,7 @@ const BasicInformationFields = (props: BasicInformationFields) => {
                     name="ID"
                     placeholder="ID"
                     component={Input}
+
                 />
             </FormItem>
             <FormItem
@@ -115,6 +130,41 @@ const BasicInformationFields = (props: BasicInformationFields) => {
                     component={Input}
                 />
             </FormItem>
+
+
+
+
+            <FormItem
+                        label="Ushers Amount"
+                        invalid={
+                            (errors.UsherAmount && touched.UsherAmount) as boolean
+                        }
+                        errorMessage={errors.UsherAmount}
+                    >
+                        <Field name="UsherAmount">
+                            {({ field, form }: FieldProps) => (
+                                <Select
+                                    field={field}
+                                    form={form}
+                                    name="UsherAmount"
+                                    options={ushersAmount}
+                                    value={ushersAmount.filter(
+                                        (usherAmount) =>  
+                                        usherAmount.value === values.UsherAmount                                        
+                                    )}
+                                    onChange={(option) =>
+                                        form.setFieldValue(
+                                            field.name,
+                                            option?.value
+                                        )
+                                    }
+                                />
+                            )}
+                        </Field>
+                    </FormItem>
+
+
+
             <FormItem
                         label="Week Day"
                         invalid={

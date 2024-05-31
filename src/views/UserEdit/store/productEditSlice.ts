@@ -32,7 +32,7 @@ type userGroupList = {
 }
 
 
-type UserData = {
+export type UserData = {
     ID?: string
     Name?: string
     UsherGroup?: userGroupList[],
@@ -130,9 +130,11 @@ export const getUsherGroupList = createAsyncThunk(
         >(data)
  
         const noo = response.data.map((test:any) => {
-          return  { label : test.Label, value: test.Value }
+          return  { label : test.label, value: test.value }
         })
 
+        console.log('the no')
+        console.log(noo)
         return noo
     }
 )

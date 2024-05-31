@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import Input from '@/components/ui/Input'
 import { HiOutlineSearch } from 'react-icons/hi'
 import {
-    getGalleries,
+    getSchedules,
     setTableData,
     useAppSelector,
     useAppDispatch,
@@ -18,7 +18,7 @@ const ProductTableSearch = () => {
     const searchInput = useRef(null)
 
     const tableData = useAppSelector(
-        (state) => state.galleryList.data.tableData
+        (state) => state.scheduleList.data.tableData
     )
 
     const debounceFn = debounce(handleDebounceFn, 500)
@@ -38,7 +38,7 @@ const ProductTableSearch = () => {
 
     const fetchData = (data: TableQueries) => {
         dispatch(setTableData(data))
-        dispatch(getGalleries(data))
+        dispatch(getSchedules(data))
     }
 
     const onEdit = (e: ChangeEvent<HTMLInputElement>) => {

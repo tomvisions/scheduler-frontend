@@ -145,6 +145,8 @@ const ProductTable = () => {
     const data = useAppSelector(
         (state) => state.usherGroupList.data.usherGroupList
     )
+    console.log('the data')
+    console.log(data);
 
     useEffect(() => {
         fetchData()
@@ -165,7 +167,6 @@ const ProductTable = () => {
     const fetchData = () => {
         dispatch(getUsherGroups({ pageIndex, pageSize, sort, query, filterData }))
     }
-    
 
     const columns: ColumnDef<UsherGroup>[] = useMemo(
         () => [
@@ -175,6 +176,9 @@ const ProductTable = () => {
                 cell: (props) => {
                   
                     const row = props.row.original
+
+                    console.log('the row')
+                    console.log(row);
                     return <span className="capitalize">{row.Name}</span>
                 },
             },

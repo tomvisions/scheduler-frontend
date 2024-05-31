@@ -10,6 +10,12 @@ import useAuth from '@/utils/hooks/useAuth'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import type { CommonProps } from '@/@types/common'
+import {useEffect} from "react";
+import {getAuthByToken, useAppDispatch, useAppSelector} from "./store";
+import {setUser, signInSuccess} from "@/store";
+import {REDIRECT_URL_KEY} from "@/constants/app.constant";
+import appConfig from "@/configs/app.config";
+import {useNavigate} from "react-router-dom";
 
 interface SignInFormProps extends CommonProps {
     disableSubmit?: boolean
@@ -18,13 +24,13 @@ interface SignInFormProps extends CommonProps {
 }
 
 type SignInFormSchema = {
-    userName: string
+    email: string
     password: string
     rememberMe: boolean
 }
 
 const validationSchema = Yup.object().shape({
-    userName: Yup.string().required('Please enter your user name'),
+    email: Yup.string().required('Please enter your email'),
     password: Yup.string().required('Please enter your password'),
     rememberMe: Yup.bool(),
 })
@@ -37,17 +43,54 @@ const SignInForm = (props: SignInFormProps) => {
         signUpUrl = '/sign-up',
     } = props
 
+    const dispatch = useAppDispatch()
+
     const [message, setMessage] = useTimeOutMessage()
 
     const { signIn } = useAuth()
+    const navigate = useNavigate()
+
+
+    const data = useAppSelector(
+        (state) => state.authState.data.authState
+    )
+
+    console.log('data')
+    console.log(data);
+   if (data.user && data.token) {
+
+           const { token } = data
+           dispatch(signInSuccess(token))
+
+
+               const { user} = data;
+               dispatch(
+                   setUser(
+                       user
+                   )
+               )
+
+            //    navigate(
+              //   `/schedule/replace/${user.Week}`
+                //)
+
+   }
+         //  const redirectUrl = query.get(REDIRECT_URL_KEY)
+     //      navigate(
+       //        redirectUrl ? redirectUrl : appConfig.authenticatedEntryPath
+         //  )
+
+
+
+
 
     const onSignIn = async (
         values: SignInFormSchema,
         setSubmitting: (isSubmitting: boolean) => void
     ) => {
-        const { userName, password } = values
+        const {email, password} = values
         setSubmitting(true)
-        const result = await signIn({ userName, password })
+        const result = await signIn({email, password})
 
         if (result?.status === 'failed') {
             setMessage(result.message)
@@ -55,6 +98,27 @@ const SignInForm = (props: SignInFormProps) => {
 
         setSubmitting(false)
     }
+
+
+
+    const fetchData = (token:{token:string} = {token:""}) => {
+            dispatch(getAuthByToken({ token: token.token }))
+    }
+
+    useEffect(() => {
+        let requestParam = {token: ""}
+        const path = location.pathname.substring(
+            location.pathname.lastIndexOf('/sign-in/') + 9
+        )
+
+        if (path) {
+            requestParam = { token: path }
+            fetchData(requestParam)
+
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location.pathname])
+
 
     return (
         <div className={className}>
@@ -65,8 +129,8 @@ const SignInForm = (props: SignInFormProps) => {
             )}
             <Formik
                 initialValues={{
-                    userName: 'admin',
-                    password: '123Qwe',
+                    email: 'tcruicksh@gmail.com',
+                    password: 'testing2',
                     rememberMe: true,
                 }}
                 validationSchema={validationSchema}
@@ -82,18 +146,18 @@ const SignInForm = (props: SignInFormProps) => {
                     <Form>
                         <FormContainer>
                             <FormItem
-                                label="User Name"
+                                label="Email"
                                 invalid={
-                                    (errors.userName &&
-                                        touched.userName) as boolean
+                                    (errors.email &&
+                                        touched.email) as boolean
                                 }
-                                errorMessage={errors.userName}
+                                errorMessage={errors.email}
                             >
                                 <Field
                                     type="text"
                                     autoComplete="off"
-                                    name="userName"
-                                    placeholder="User Name"
+                                    name="email"
+                                    placeholder="Email"
                                     component={Input}
                                 />
                             </FormItem>

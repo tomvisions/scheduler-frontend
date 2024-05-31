@@ -5,7 +5,7 @@ import TagForm, {
 import toast from '@/components/ui/toast'
 import Notification from '@/components/ui/Notification'
 import { useNavigate } from 'react-router-dom'
-import { apiCreateTag } from '@/services/MediaService'
+import { apiCreateTag } from '@/services/ScheduleService'
 
 const TagNew = () => {
     const navigate = useNavigate()

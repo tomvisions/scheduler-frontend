@@ -48,10 +48,9 @@ export const protectedRoutes = [
             header: 'Edit Usher Group',
         },
     },
-
     {
         key: 'ScheduleNew',
-        path: `/schedule`,
+        path: `/schedule/new`,
         component: lazy(() => import('@/views/Schedule')),
         authority: [],
         meta: {
@@ -59,50 +58,42 @@ export const protectedRoutes = [
         },
     },
     {
-        key: 'gallerList',
-        path: '/gallery',
-        component: lazy(() => import('@/views/GalleryList')),
-        authority: [],
-    },
-    {
-        key: 'galleryEdit',
-        path: `/gallery/edit/:galleryId`,
-        component: lazy(() => import('@/views/GalleryEdit')),
+        key: 'AbsentList',
+        path: `/absent`,
+        component: lazy(() => import('@/views/AbsentList')),
         authority: [],
         meta: {
-            header: 'Edit Gallery',
+            header: 'AbsentList',
         },
     },
     {
-        key: 'imageListByGalleryId',
-        path: '/image/:galleryId',
-        component: lazy(() => import('@/views/ImageListtByGalleryId')),
+        key: 'Add Absence',
+        path: `/absent/new`,
+        component: lazy(() => import('@/views/AbsentNew')),
+        authority: [],
+        meta: {
+            header: 'AbsentList',
+        },
+    },
+    {
+        key: 'scheduleList',
+        path: '/schedule',
+        component: lazy(() => import('../../views/ScheduleList')),
         authority: [],
     },
     {
-        key: 'imageList',
-        path: '/image',
-        component: lazy(() => import('@/views/ImageList')),
+        key: 'scheduleListToken',
+        path: '/schedule/:weekId',
+        component: lazy(() => import('../../views/ScheduleReplace')),
         authority: [],
     },
     {
-        key: 'imageEdit',
-        path: '/image/edit/:imageId',
-        component: lazy(() => import('@/views/ImageEdit')),
+        key: 'scheduleListTokenCheck',
+        path: '/schedule/Um0Us0UeFrVWL52jIX3JWJ1tx+Nc94oAojNDWlchk4jgwLNoli5LQxlCnS7RkwHaY3Wac4+SZ/QlG+ENUxcMapUMJ2BCWQ77LO3w1tRjZ7PP+nTxS1r5VIMNkJiBHVU4cgiS3vME335FUWIYvTgS2FZOX9fIOwrM',
+        component: lazy(() => import('../../views/ScheduleList')),
         authority: [],
     },
-    {
-        key: 'tag',
-        path: '/tag',
-        component: lazy(() => import('@/views/TagList')),
-        authority: [],
-    },
-    {
-        key: 'tagNew',
-        path: '/tag/new',
-        component: lazy(() => import('@/views/TagNew')),
-        authority: [],
-    },
+
     /** Example purpose only, please remove */
     {
         key: 'singleMenuItem',
