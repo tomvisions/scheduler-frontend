@@ -14,25 +14,25 @@ export const protectedRoutes = [
     {
         key: 'userList',
         path: '/user',
-        component: lazy(() => import('@/views/UserList')),
+        component: lazy(() => import('../../views/User/List')),
         authority: [],
     },
     {
         key: 'userEdit',
         path: '/user/edit/:userId',
-        component: lazy(() => import('@/views/UserEdit')),
+        component: lazy(() => import('../../views/User/Edit')),
         authority: [],
     },
     {
         key: 'usherGroupList',
         path: '/usher-group',
-        component: lazy(() => import('@/views/UsherGroupList')),
+        component: lazy(() => import('../../views/UsherGroup/List')),
         authority: [],
     },
     {
         key: 'usherGroupEdit',
         path: `/usher-group/edit/:userGroupId`,
-        component: lazy(() => import('@/views/UsherGroupEdit')),
+        component: lazy(() => import('../../views/UsherGroup/Edit')),
         authority: [],
         meta: {
             header: 'Edit Usher Group',
@@ -42,7 +42,7 @@ export const protectedRoutes = [
     {
         key: 'usherGroupNew',
         path: `/usher-group/new`,
-        component: lazy(() => import('@/views/UsherGroupNew')),
+        component: lazy(() => import('../../views/UsherGroup/New')),
         authority: [],
         meta: {
             header: 'Edit Usher Group',
@@ -51,7 +51,7 @@ export const protectedRoutes = [
     {
         key: 'ScheduleNew',
         path: `/schedule/new`,
-        component: lazy(() => import('@/views/Schedule')),
+        component: lazy(() => import('../../views/Schedule/New')),
         authority: [],
         meta: {
             header: 'Edit Usher Group',
@@ -60,7 +60,7 @@ export const protectedRoutes = [
     {
         key: 'AbsentList',
         path: `/absent`,
-        component: lazy(() => import('@/views/AbsentList')),
+        component: lazy(() => import('../../views/Absent/List')),
         authority: [],
         meta: {
             header: 'AbsentList',
@@ -69,7 +69,7 @@ export const protectedRoutes = [
     {
         key: 'Add Absence',
         path: `/absent/new`,
-        component: lazy(() => import('@/views/AbsentNew')),
+        component: lazy(() => import('../../views/Absent/New/New')),
         authority: [],
         meta: {
             header: 'AbsentList',
@@ -78,19 +78,19 @@ export const protectedRoutes = [
     {
         key: 'scheduleList',
         path: '/schedule',
-        component: lazy(() => import('../../views/ScheduleList')),
+        component: lazy(() => import('../../views/Schedule/List')),
         authority: [],
     },
     {
         key: 'scheduleListToken',
         path: '/schedule/:weekId',
-        component: lazy(() => import('../../views/ScheduleReplace')),
+        component: lazy(() => import('../../views/Schedule/Replace')),
         authority: [],
     },
     {
         key: 'scheduleListTokenCheck',
         path: '/schedule/Um0Us0UeFrVWL52jIX3JWJ1tx+Nc94oAojNDWlchk4jgwLNoli5LQxlCnS7RkwHaY3Wac4+SZ/QlG+ENUxcMapUMJ2BCWQ77LO3w1tRjZ7PP+nTxS1r5VIMNkJiBHVU4cgiS3vME335FUWIYvTgS2FZOX9fIOwrM',
-        component: lazy(() => import('../../views/ScheduleList')),
+        component: lazy(() => import('../../views/Schedule/List')),
         authority: [],
     },
 

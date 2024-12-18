@@ -24,7 +24,7 @@ async function formatParams(data:TableQueries) {
    });
 }
 
-export const URL = 'http://127.0.0.1:3500/schedule'
+export const URL = 'http://localhost:3500/schedule'
 export async function apiGetSchedules<T, U extends Record<string, unknown>>(
     data: TableQueries
 ) {
@@ -33,11 +33,11 @@ export async function apiGetSchedules<T, U extends Record<string, unknown>>(
     //  console.log(`${URL}/page-index/${data['pageIndex']}/page-size/${params.join('/')}`)
    // console.log(too)
 
-//    console.log(`${URL}/page-index/${data['pageIndex']}/page-size/${params.join('/')}`)
+   console.log(`${URL}/page-index/${data['pageIndex']}/page-size/${params.join('/')}`)
+    console.log(data);
     return ApiService.fetchData<T>({
         url: `${URL}/page-index/${data['pageIndex']}/page-size/${params.join('/')}`,
-        method: 'post',
-        data,
+        method: 'post'
     })
 }
 
